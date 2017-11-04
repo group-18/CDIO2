@@ -65,7 +65,7 @@ public class Translate {
                     continue;
                 }
 
-                String[] keyValue = currentLine.split(":");
+                String[] keyValue = currentLine.split(":", 2);
 
                 String key = keyValue[0];
                 String val = keyValue.length == 1 ? "" : keyValue[1];
