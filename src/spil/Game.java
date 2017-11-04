@@ -9,11 +9,18 @@ public class Game {
     private int playerIndex = 0;
     private DiceCup dies;
 
-    public Game (Player p1, Player p2){
-        this.players = new Player[2];
-        this.players[0]=p1;
-        this.players[1]=p2;
+    public Game()
+    {
         this.dies = new DiceCup();
+    }
+
+    public void askForPlayers(int numberOfPlayers)
+    {
+        this.players = new Player[numberOfPlayers];
+
+        for (int i = 0; i < numberOfPlayers; i++) {
+            this.players[i] = new Player(GUI.getUserString("Indtast spiller " + (i + 1) + "'s navn"));
+        }
     }
 
     public void play() {
