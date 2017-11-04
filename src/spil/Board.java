@@ -66,13 +66,13 @@ public class Board {
                 .setTitle("Black Cave")
                 .setBgColor(Color.RED)
                 .setSubText("-70")
-                .setDescription("Du synes, at 'Black cave' lød spændende på TripAdvisor, nærmest adrenalinagtigt. Du bliver skuffet. 'No refunds' står der på billetten")
+                .setDescription("Du synes, at 'Black cave' lød spændende på TripAdvisor, nærmest adrenalinagtigt. Du bliver skuffet. 'No refunds' står der på billetten.")
                 .build();
         fields[9] = new Street.Builder()
                 .setTitle("Huts in the mountain")
                 .setBgColor(Color.GREEN)
                 .setSubText("+60")
-                .setDescription("Det her sted er hyggeligt, nærmest eventyrligt anlagt med udsigt over de flotte bjerge, syngende fugle og sjove, frølignende skabninger, der råber: Mrlglglg")
+                .setDescription("Det her sted er hyggeligt, nærmest eventyrligt anlagt med udsigt over de flotte bjerge, syngende fugle og sjove, frølignende skabninger, der råber: Mrlglglg.")
                 .build();
         fields[10] = new Street.Builder()
                 .setTitle("The Werewall")
