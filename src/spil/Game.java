@@ -1,6 +1,9 @@
 package spil;
 
 
+import desktop_resources.*;
+
+
 public class Game {
     private Player[] players;
     private int playerIndex = 0;
@@ -14,6 +17,8 @@ public class Game {
     }
 
     public void play() {
+        GUI.addPlayer(players[0].getName(), players[0].getScore());
+        GUI.addPlayer(players[1].getName(), players[1].getScore());
         this.printWelcomeMessage();
 
         System.out.println("Spillet startes.");
@@ -27,8 +32,10 @@ public class Game {
 
             System.out.println("Det er " + currentPlayer.getName() + "s tur. ");
             //Adds a button that executes the following do-while-statement, remove this for easy unittesting
+            GUI.getUserButtonPressed("", "Kast");
 
             do {
+                GUI.removeAllCars(currentPlayer.getName());
                 this.dies.roll();
                 this.print("You rolled " + dies.getSum());
                 int fieldNumber = dies.getSum();
@@ -41,6 +48,7 @@ public class Game {
                         currentPlayer.addScore(250);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 3:
                         System.out.println("Du har landet på 'Crater'. \n" +
@@ -50,6 +58,7 @@ public class Game {
                         currentPlayer.addScore(-100);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 4:
                         System.out.println("Du har landet på 'Palace gates'. \n" +
@@ -58,6 +67,7 @@ public class Game {
                         currentPlayer.addScore(100);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 5:
                         System.out.println("Du har landet på 'Cold Desert'. \n" +
@@ -67,6 +77,7 @@ public class Game {
                         currentPlayer.addScore(-20);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 6:
                         System.out.println("Du har landet på 'Walled city'. \n" +
@@ -76,6 +87,7 @@ public class Game {
                         currentPlayer.addScore(180);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 7:
                         System.out.println("Du har landet på 'Monastery'. \n" +
@@ -86,6 +98,7 @@ public class Game {
                         currentPlayer.addScore(0);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 8:
                         System.out.println("Du har landet på 'Black cave' \n" +
@@ -94,6 +107,7 @@ public class Game {
                         currentPlayer.addScore(-70);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 9:
                         System.out.println("Du har landet på 'Huts in the mountain'. \n" +
@@ -103,6 +117,7 @@ public class Game {
                         currentPlayer.addScore(60);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 10:
                         System.out.println("Du har 'The Werewall (werewolf-wall)'. \n" +
@@ -112,6 +127,7 @@ public class Game {
                         currentPlayer.addScore(-80);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 11:
                         System.out.println("Du har landet på 'The pit'. \n" +
@@ -120,6 +136,7 @@ public class Game {
                         currentPlayer.addScore(-50);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 12:
                         System.out.println("Du har landet på 'Goldmine'. \n " +
@@ -128,10 +145,12 @@ public class Game {
                         currentPlayer.addScore(650);
                         System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
                         System.out.println("\n");
+                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                 }
             }
             while (dies.getSum() == 10);
+            GUI.setBalance(currentPlayer.getName(),currentPlayer.getScore());
 
             if (currentPlayer.getScore() >= 3000) {
                 winnerFound = true;
@@ -183,5 +202,3 @@ public class Game {
         System.out.println(msg);
     }
 }
-
-
