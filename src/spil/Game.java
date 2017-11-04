@@ -9,6 +9,7 @@ public class Game {
     private int playerIndex = 0;
     private DiceCup dies;
 
+
     public Game()
     {
         this.dies = new DiceCup();
@@ -19,7 +20,11 @@ public class Game {
         this.players = new Player[numberOfPlayers];
 
         for (int i = 0; i < numberOfPlayers; i++) {
-            this.players[i] = new Player(GUI.getUserString("Indtast spiller " + (i + 1) + "'s navn"));
+            String playerName = GUI.getUserString(
+                    Translate.t("writeName", new String[] {"" + (i + 1)})
+            );
+
+            this.players[i] = new Player(playerName);
         }
     }
 
@@ -28,8 +33,6 @@ public class Game {
         GUI.addPlayer(players[1].getName(), players[1].getScore());
         this.printWelcomeMessage();
 
-        System.out.println("Spillet startes.");
-
         Player currentPlayer;
         boolean winnerFound = false;
 
@@ -37,121 +40,124 @@ public class Game {
 
             currentPlayer = getNextPlayer();
 
-            System.out.println("Det er " + currentPlayer.getName() + "s tur. ");
+            this.print(Translate.t("turn.currentPlayer", new String[] {currentPlayer.getName()}));
             //Adds a button that executes the following do-while-statement, remove this for easy unittesting
             GUI.getUserButtonPressed("", "Kast");
 
             do {
                 GUI.removeAllCars(currentPlayer.getName());
                 this.dies.roll();
-                this.print("You rolled " + dies.getSum());
+                this.print(Translate.t("turn.rollResult", new String[] {"" + dies.getSum()}));
                 int fieldNumber = dies.getSum();
                 switch (fieldNumber) {
                     case 2:
-                        System.out.println("Du har landet på 'Tower'. \n" +
-                                "'Tower' er kendt for dens forrygende udsigt, desværre lider de fleste af højdeskræk, når de kommer op i 500m højde. \n" +
-                                "Du tænker langt, du tænker hurtigt, du sælger højdeskrækpiller og tjener derved 250.");
-                        System.out.println("Udbytte: +250");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Tower"}),
+                                Translate.t("field.tower.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"+250"}));
                         currentPlayer.addScore(250);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 3:
-                        System.out.println("Du har landet på 'Crater'. \n" +
-                                "'Crater' lugter langt ude af gamle dinosaurer, månestøv og assorteret rumskibsskrald fra den seneste Apollo-mission.\n" +
-                                "Du bliver nødt til at tage en taxi væk fra attraktionen, hvilket ifølge taxiføreren maks kommer til at koste 25.");
-                        System.out.println("Udbytte: -100");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Crater"}),
+                                Translate.t("field.crater.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"-100"}));
                         currentPlayer.addScore(-100);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 4:
-                        System.out.println("Du har landet på 'Palace gates'. \n" +
-                                "Muren er stor, men dine picklocking-skills fra utallige timer i Skyrim har givet pote, og du underviser nogle skumle typer i at \n lirke døre op.");
-                        System.out.println("Udbytte: +100");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Palace Gates"}),
+                                Translate.t("field.palace_gates.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"100"}));
                         currentPlayer.addScore(100);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 5:
-                        System.out.println("Du har landet på 'Cold Desert'. \n" +
-                                "Du husker tydeligt, at din mor bad dig om at tage en ekstra trøje med, og at du til dette svarede, at det da ikke bliver koldt i en ørken.\n" +
-                                "For stolt til at erkende dine fejl, må du købe en ekstra varm trøje fra den nærliggende kiosk, hvor alt står på et fremmed sprog.");
-                        System.out.println("Udbytte: -20");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Cold Desert"}),
+                                Translate.t("field.cold_desert.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"-20"}));
                         currentPlayer.addScore(-20);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 6:
-                        System.out.println("Du har landet på 'Walled city'. \n" +
-                                "Du ankommer til 'Walled city', som egentlig før du ankom bare hed 'city'. Dine evner inden for mursten og din viden i dit tidligere \n" +
-                                "ynglingsfag, sløjd, giver endelig pote, og du tjener en skilling.");
-                        System.out.println("Udbytte: +180");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Walled City"}),
+                                Translate.t("field.walled_city.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"180"}));
                         currentPlayer.addScore(180);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 7:
-                        System.out.println("Du har landet på 'Monastery'. \n" +
-                                "Du ankommer til 'Monastery', hvor det vrimler med alle verdens turister med hver deres bæltetaske, nyeste iPad til at tage billede \n og kæmpe solhatte." +
-                                "\n Du erkender, at store mængder af mennesker ikke er dit stærkeste punkt, og tager fumlende dit rejsekatalog frem og tænker til dig selv: \n" +
-                                "'Nu har jeg jo på en måde set det.");
-                        System.out.println("Udbytte: 0");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Monastery"}),
+                                Translate.t("field.monastery.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"0"}));
                         currentPlayer.addScore(0);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 8:
-                        System.out.println("Du har landet på 'Black cave' \n" +
-                                "Du synes, at 'Black cave' lød spændende på TripAdvisor, nærmest adrenalinagtigt. Du bliver skuffet. 'No refunds' står der på billetten");
-                        System.out.println("Udbytte: -70");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Black Cave"}),
+                                Translate.t("field.black_cave.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"-70"}));
                         currentPlayer.addScore(-70);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 9:
-                        System.out.println("Du har landet på 'Huts in the mountain'. \n" +
-                                "Det her sted er hyggeligt, nærmest eventyrligt anlagt med udsigt over de flotte bjerge, syngende fugle og sjove, frølignende skabninger, der råber: \n" +
-                                "'Mrlglglg'.");
-                        System.out.println("Udbytte: +60");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Huts in the Mountain"}),
+                                Translate.t("field.huts_in_the_mountain.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"60"}));
                         currentPlayer.addScore(60);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 10:
-                        System.out.println("Du har 'The Werewall (werewolf-wall)'. \n" +
-                                "Du griner lidt over attraktionens navn, men du kan godt indse, at det er et desperat punkt på at være sjov, og derved bliver man \n" +
-                                "nødt til at skrive i parantes, hvad det egentlig betyder. Du går hurtigere videre (eller: 'DuhurVidere' hahaha ... nej.");
-                        System.out.println("Udbytte: -80, men en ekstra tur");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"The Werewall (werewolf-wall)"}),
+                                Translate.t("field.the_werewall.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"-80"}));
                         currentPlayer.addScore(-80);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 11:
-                        System.out.println("Du har landet på 'The pit'. \n" +
-                                "Du fortryder lidt, at du har brugt så lang tid på at gå ned i et hul, men du manglede en achievement.");
-                        System.out.println("Udbytte: -50");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"The Pit"}),
+                                Translate.t("field.the_pit.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"-50"}));
                         currentPlayer.addScore(-50);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 12:
-                        System.out.println("Du har landet på 'Goldmine'. \n " +
-                                "## JACKPOT ## Du finder en kæmpe guldklump med værdi 650. Du når lige at råbe 'gg ez', inden du skifter tur");
-                        System.out.println("Udbytte: 650");
+                        this.print(new String[] {
+                                Translate.t("turn.position", new String[] {"Goldmine"}),
+                                Translate.t("field.goldmine.description"),
+                        });
+                        this.print(Translate.t("turn.score", new String[] {"650"}));
                         currentPlayer.addScore(650);
-                        System.out.println("Din pengebeholdning er nu: " + currentPlayer.getScore());
-                        System.out.println("\n");
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                 }
@@ -180,32 +186,42 @@ public class Game {
     }
 
     private void printWelcomeMessage(){
-        System.out.println("Velkommen. \n Spillet kræver to spillere, hver med en startpengebeholdning på 1000, som på skift kaster med to terninger. " +
-                "Terningernes sum bestemmer placeringen på spillebrættet, der består af 11 felter (felt nr.: 2-12), hvoraf hver felt giver/trækker et bestemt på pengebeholdningen. \n " +
-                "Den første spiller, er opnår en pengebeholdning på 3000 har vundet.");
+        this.print(Translate.t("welcome1"));
+        this.print(Translate.t("welcome2"));
+        this.print(Translate.t("welcome3"));
     }
+
     private void printScoreBoard(Player winningPlayer)
     {
-        this.print("");
+        String[] scoreboardText = new String[this.players.length + 2];
 
-        this.print("--- The scoreboard ---");
-        for (Player player : this.players) {
-            System.out.print(" - " + player.getName() + ": " + player.getScore());
+        scoreboardText[0] = Translate.t("scoreboard.title");
+
+        for (int i = 1; i <= this.players.length; i++) {
+            Player player = this.players[i - 1];
+
+            scoreboardText[i] = " - " + player.getName() + ": " + player.getScore();
 
             if (player == winningPlayer) {
-                System.out.print(" (the winner)");
+                scoreboardText[i] = scoreboardText[i] + " " + Translate.t("scoreboard.winnerText");
             }
-
-            this.print("");
         }
 
-        this.print("");
-        this.print("And the winner is " + winningPlayer.getName());
+        scoreboardText[this.players.length + 1] = Translate.t("scoreboard.winner", new String[] {winningPlayer.getName()});
+
+        this.print(String.join("\n", scoreboardText));
     }
 
 
     private void print(String msg)
     {
-        System.out.println(msg);
+        GUI.showMessage(msg);
     }
+
+
+    private void print(String[] messages)
+    {
+        this.print(String.join("\n", messages));
+    }
+
 }
