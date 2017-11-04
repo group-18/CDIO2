@@ -68,12 +68,19 @@ public class Translate {
                 String[] keyValue = currentLine.split(":", 2);
 
                 String key = keyValue[0];
-                String val = keyValue.length == 1 ? "" : keyValue[1];
+                String val = keyValue.length == 1 ? "" : this.parseValue(keyValue[1]);
 
                 this.translations.putIfAbsent(key, val);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String parseValue(String val)
+    {
+        return val
+                .replace(" \\n ", "\n")
+                .replace("\\n", "\n");
     }
 }
