@@ -4,21 +4,61 @@ import java.io.*;
 import java.util.HashMap;
 
 public class Translate {
-    private String lang;
+    private static Translate instance;
+
+    private static String lang = "da_DK";
+
 
     private HashMap<String, String> translations;
 
 
-    public Translate(String lang) throws Exception
+    private Translate()
     {
-        this.lang = lang;
         this.translations = new HashMap<>();
 
-        try {
-            this.parseFile(this.getClass().getResource("languages/" + this.lang + ".txt").getPath());
-        } catch (FileNotFoundException e) {
-            throw new Exception("Language " + this.lang + " is not supported");
+        this.parseFile(this.getClass().getResource("languages/" + Translate.getLang() + ".txt").getPath());
+    }
+
+
+    public static Translate getInstance()
+    {
+        if (! Translate.hasInstance()) {
+            Translate.instance = new Translate();
         }
+
+        return Translate.instance;
+    }
+
+
+    private static boolean hasInstance()
+    {
+        return Translate.instance != null;
+    }
+
+
+    public static String getLang()
+    {
+        return Translate.lang;
+    }
+
+
+    public static void setLang(String lang)
+    {
+        if (! Translate.hasInstance()) {
+            Translate.lang = lang;
+        }
+    }
+
+
+    public static String t(String key)
+    {
+        return Translate.getInstance().get(key);
+    }
+
+
+    public static String t(String key, String[] variables)
+    {
+        return Translate.getInstance().get(key, variables);
     }
 
 
@@ -48,19 +88,13 @@ public class Translate {
     }
 
 
-    public String getLang()
+    private void parseFile(String filePath)
     {
-        return this.lang;
-    }
-
-
-    private void parseFile(String filePath) throws FileNotFoundException
-    {
-        BufferedReader b = new BufferedReader(new FileReader(filePath));
-
         try {
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
             String currentLine;
-            while ((currentLine = b.readLine()) != null) {
+            while ((currentLine = reader.readLine()) != null) {
                 if (currentLine.equals("")) {
                     continue;
                 }
