@@ -1,0 +1,32 @@
+writeName:Indtast spiller {{ #0 }}'s name
+
+
+welcome1:Velkommen.
+welcome2:Spillet kræver to spillere, hver med en startpengebeholdning på 1000, som på skift kaster med to terninger.
+welcome3:Terningernes sum bestemmer placeringen på spillebrættet, der består af 11 felter (felt nr.: 2-12), hvoraf hver felt giver/trækker et bestemt på pengebeholdningen.
+welcome4:Den første spiller, er opnår en pengebeholdning på 3000 har vundet.
+
+
+turn.currentPlayer:Det er {{ #0 }}s tur.
+turn.rollResult:Du kastede {{ #0 }}.
+turn.position:Du er landet på '{{ #0 }}'.
+turn.score:Udbytte {{ #0 }}.
+turn.scoreCurrent:Din pengebeholdning er nu: {{ #0 }}
+
+field.tower.description:'Tower' er kendt for dens forrygende udsigt, desværre lider de fleste af højdeskræk, når de kommer op i 500m højde. \n Du tænker langt, du tænker hurtigt, du sælger højdeskrækpiller og tjener derved 250.
+field.crater.description:'Crater' lugter langt ude af gamle dinosaurer, månestøv og assorteret rumskibsskrald fra den seneste Apollo-mission. \n Du bliver nødt til at tage en taxi væk fra attraktionen, hvilket ifølge taxiføreren maks kommer til at koste 25.
+field.palace_gates.description:Muren er stor, men dine picklocking-skills fra utallige timer i Skyrim har givet pote, og du underviser nogle skumle typer i at lirke døre op.
+field.cold_desert.description:Du husker tydeligt, at din mor bad dig om at tage en ekstra trøje med, og at du til dette svarede, at det da ikke bliver koldt i en ørken. \n For stolt til at erkende dine fejl, må du købe en ekstra varm trøje fra den nærliggende kiosk, hvor alt står på et fremmed sprog.
+field.walled_city.description:Du ankommer til 'Walled city', som egentlig før du ankom bare hed 'city'. Dine evner inden for mursten og din viden i dit tidligere ynglingsfag, sløjd, giver endelig pote, og du tjener en skilling.
+field.monastery.description:Du ankommer til 'Monastery', hvor det vrimler med alle verdens turister med hver deres bæltetaske, nyeste iPad til at tage billede og kæmpe solhatte. \n Du erkender, at store mængder af mennesker ikke er dit stærkeste punkt, og tager fumlende dit rejsekatalog frem og tænker til dig selv: 'Nu har jeg jo på en måde set det'.
+field.black_cave.description:Du synes, at 'Black cave' lød spændende på TripAdvisor, nærmest adrenalinagtigt. Du bliver skuffet. 'No refunds' står der på billetten.
+field.huts_in_the_mountain.description:Det her sted er hyggeligt, nærmest eventyrligt anlagt med udsigt over de flotte bjerge, syngende fugle og sjove, frølignende skabninger, der råber: 'Mrlglglg'.
+field.the_werewall.description:Du griner lidt over attraktionens navn, men du kan godt indse, at det er et desperat punkt på at være sjov, og derved bliver man nødt til at skrive i parantes, hvad det egentlig betyder. Du går hurtigere videre (eller: 'DuhurVidere' hahaha ... nej.
+field.the_pit.description:Du fortryder lidt, at du har brugt så lang tid på at gå ned i et hul, men du manglede en achievement.
+field.goldmine.description:## JACKPOT ## Du finder en kæmpe guldklump med værdi 650. Du når lige at råbe 'gg ez', inden du skifter tur.
+
+
+
+scoreboard.title:-- Resultat --
+scoreboard.winner:Vinderen er {{ #0 }}.
+scoreboard.winnerText:(vinderen).
