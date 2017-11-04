@@ -9,13 +9,13 @@ public class Translate {
     private HashMap<String, String> translations;
 
 
-    public Translate(String lang, String fileLocation) throws Exception
+    public Translate(String lang) throws Exception
     {
         this.lang = lang;
         this.translations = new HashMap<>();
 
         try {
-            this.parseFile(fileLocation + "/" + this.lang + ".txt");
+            this.parseFile(this.getClass().getResource("languages/" + this.lang + ".txt").getPath());
         } catch (FileNotFoundException e) {
             throw new Exception("Language " + this.lang + " is not supported");
         }
