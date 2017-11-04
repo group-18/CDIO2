@@ -34,6 +34,20 @@ public class Translate {
     }
 
 
+    public String get(String key, String[] variables)
+    {
+        String translation = this.get(key);
+
+        if (! translation.equals(key)) {
+            for (int i = 0; i < variables.length; i++) {
+                translation = translation.replaceAll("\\{\\{ ?#" + i + " ?\\}\\}", variables[i]);
+            }
+        }
+
+        return translation;
+    }
+
+
     public String getLang()
     {
         return this.lang;
