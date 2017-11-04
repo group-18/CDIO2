@@ -24,11 +24,7 @@ public class Translate {
 
     public String get(String key)
     {
-        if (! this.translations.containsKey(key)) {
-            return key;
-        }
-
-        String translation = this.translations.get(key);
+        String translation = this.translations.getOrDefault(key, key);
 
         if (translation.equals("")) {
             return key;
