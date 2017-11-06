@@ -47,8 +47,9 @@ public class Game {
             do {
                 GUI.removeAllCars(currentPlayer.getName());
                 this.dies.roll();
-                this.print(Translate.t("turn.rollResult", new String[] {"" + dies.getSum()}));
                 int fieldNumber = dies.getSum();
+                GUI.setCar(fieldNumber, currentPlayer.getName());
+                this.print(Translate.t("turn.rollResult", new String[] {"" + dies.getSum()}));
                 switch (fieldNumber) {
                     case 2:
                         this.print(new String[] {
@@ -58,7 +59,7 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"+250"}));
                         currentPlayer.addScore(250);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
+
                         break;
                     case 3:
                         this.print(new String[] {
@@ -68,7 +69,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"-100"}));
                         currentPlayer.addScore(-100);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 4:
                         this.print(new String[] {
@@ -78,7 +78,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"100"}));
                         currentPlayer.addScore(100);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 5:
                         this.print(new String[] {
@@ -88,7 +87,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"-20"}));
                         currentPlayer.addScore(-20);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 6:
                         this.print(new String[] {
@@ -98,7 +96,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"180"}));
                         currentPlayer.addScore(180);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 7:
                         this.print(new String[] {
@@ -108,7 +105,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"0"}));
                         currentPlayer.addScore(0);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 8:
                         this.print(new String[] {
@@ -118,7 +114,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"-70"}));
                         currentPlayer.addScore(-70);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 9:
                         this.print(new String[] {
@@ -128,7 +123,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"60"}));
                         currentPlayer.addScore(60);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 10:
                         this.print(new String[] {
@@ -138,7 +132,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"-80"}));
                         currentPlayer.addScore(-80);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 11:
                         this.print(new String[] {
@@ -148,7 +141,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"-50"}));
                         currentPlayer.addScore(-50);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                     case 12:
                         this.print(new String[] {
@@ -158,7 +150,6 @@ public class Game {
                         this.print(Translate.t("turn.score", new String[] {"650"}));
                         currentPlayer.addScore(650);
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
-                        GUI.setCar(fieldNumber, currentPlayer.getName());
                         break;
                 }
             }
