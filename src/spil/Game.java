@@ -152,9 +152,9 @@ public class Game {
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
                         break;
                 }
+                GUI.setBalance(currentPlayer.getName(),currentPlayer.getScore());
             }
             while (dies.getSum() == 10);
-            GUI.setBalance(currentPlayer.getName(),currentPlayer.getScore());
 
             if (currentPlayer.getScore() >= 3000) {
                 winnerFound = true;
