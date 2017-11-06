@@ -16,7 +16,7 @@ public class Translate {
     {
         this.translations = new HashMap<String, String>();
 
-        this.parseFile(this.getClass().getResource("/languages/" + Translate.getLang() + ".txt").getPath());
+        this.parseFile("/languages/" + Translate.getLang() + ".txt");
     }
 
 
@@ -95,7 +95,8 @@ public class Translate {
     private void parseFile(String filePath)
     {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            InputStream in = this.getClass().getResourceAsStream(filePath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
