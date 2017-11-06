@@ -14,9 +14,9 @@ public class Translate {
 
     private Translate()
     {
-        this.translations = new HashMap<>();
+        this.translations = new HashMap<String, String>();
 
-        this.parseFile(this.getClass().getResource("languages/" + Translate.getLang() + ".txt").getPath());
+        this.parseFile(this.getClass().getResource("/languages/" + Translate.getLang() + ".txt").getPath());
     }
 
 
@@ -64,7 +64,11 @@ public class Translate {
 
     public String get(String key)
     {
-        String translation = this.translations.getOrDefault(key, key);
+        if (! this.translations.containsKey(key)) {
+            return key;
+        }
+
+        String translation = this.translations.get(key);
 
         if (translation.equals("")) {
             return key;
@@ -104,7 +108,9 @@ public class Translate {
                 String key = keyValue[0];
                 String val = keyValue.length == 1 ? "" : this.parseValue(keyValue[1]);
 
-                this.translations.putIfAbsent(key, val);
+                if (! this.translations.containsKey(key)) {
+                    this.translations.put(key, val);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
