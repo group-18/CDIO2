@@ -13,8 +13,8 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 
-# Output
-/out/
+### Maven
+/target/
 
 ### macOS
 .DS_Store
