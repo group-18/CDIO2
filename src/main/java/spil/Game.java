@@ -7,12 +7,18 @@ import desktop_resources.*;
 public class Game {
     private Player[] players;
     private int playerIndex = 0;
-    private DiceCup dies;
-
-
+    private Dice[] dies;
     public Game()
     {
-        this.dies = new DiceCup();
+     Dice d1 = new Dice(6);
+     Dice d2 = new Dice(6);
+     this.dies = new Dice[2];
+     this.dies[0] = d1;
+     this.dies[1] = d2;
+    }
+
+    public int sum() {
+        return dies[0].getFaceValue()+dies[1].getFaceValue();
     }
 
     public void askForPlayers(int numberOfPlayers)
@@ -46,10 +52,12 @@ public class Game {
 
             do {
                 GUI.removeAllCars(currentPlayer.getName());
-                this.dies.roll();
-                int fieldNumber = dies.getSum();
+                dies[0].roll();
+                dies[1].roll();
+                GUI.setDice(dies[0].getFaceValue(),3,8,dies[1].getFaceValue(),4,8);
+                int fieldNumber = sum();
                 GUI.setCar(fieldNumber, currentPlayer.getName());
-                this.print(Translate.t("turn.rollResult", new String[] {"" + dies.getSum()}));
+                this.print(Translate.t("turn.rollResult", new String[] {"" + sum()}));
                 switch (fieldNumber) {
                     case 2:
                         this.print(new String[] {
@@ -154,7 +162,7 @@ public class Game {
                 }
                 GUI.setBalance(currentPlayer.getName(),currentPlayer.getScore());
             }
-            while (dies.getSum() == 10);
+            while (sum()==10);
 
             if (currentPlayer.getScore() >= 3000) {
                 winnerFound = true;
