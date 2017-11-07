@@ -3,11 +3,12 @@ package spil;
 
 public class Player {
     private String name;
-    private int score=1000;
+    private Stash stash;
 
     public Player(String name)
     {
         this.name = name;
+        this.stash = new Stash();
     }
 
 
@@ -16,15 +17,12 @@ public class Player {
         return this.name;
     }
 
-
-    public int getScore()
-    {
-        return score;
+    public int getAmount(){
+        return this.stash.getAmount();
     }
 
-
-    public void addScore(int numberToAdd)
+    public void addAmount(int numberToAdd)
     {
-        this.score += numberToAdd;
+        this.stash.addAmount(numberToAdd);
     }
 }
