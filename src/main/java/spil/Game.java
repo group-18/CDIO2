@@ -7,7 +7,14 @@ import desktop_resources.*;
 public class Game {
     private Player[] players;
     private int playerIndex = 0;
+<<<<<<< HEAD
     private Dice[] dies;
+=======
+    private Dice[] dice;
+    private DiceCup dies;
+
+
+>>>>>>> master
     public Game()
     {
      Dice d1 = new Dice(6);
@@ -31,12 +38,12 @@ public class Game {
             );
 
             this.players[i] = new Player(playerName);
+
+            GUI.addPlayer(this.players[i].getName(), this.players[i].getAmount());
         }
     }
 
     public void play() {
-        GUI.addPlayer(players[0].getName(), players[0].getScore());
-        GUI.addPlayer(players[1].getName(), players[1].getScore());
         this.printWelcomeMessage();
 
         Player currentPlayer;
@@ -65,8 +72,8 @@ public class Game {
                                 Translate.t("field.tower.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"+250"}));
-                        currentPlayer.addScore(250);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(250);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
 
                         break;
                     case 3:
@@ -75,8 +82,8 @@ public class Game {
                                 Translate.t("field.crater.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"-100"}));
-                        currentPlayer.addScore(-100);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(-100);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 4:
                         this.print(new String[] {
@@ -84,8 +91,8 @@ public class Game {
                                 Translate.t("field.palace_gates.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"100"}));
-                        currentPlayer.addScore(100);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(100);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 5:
                         this.print(new String[] {
@@ -93,8 +100,8 @@ public class Game {
                                 Translate.t("field.cold_desert.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"-20"}));
-                        currentPlayer.addScore(-20);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(-20);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 6:
                         this.print(new String[] {
@@ -102,8 +109,8 @@ public class Game {
                                 Translate.t("field.walled_city.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"180"}));
-                        currentPlayer.addScore(180);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(180);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 7:
                         this.print(new String[] {
@@ -111,8 +118,8 @@ public class Game {
                                 Translate.t("field.monastery.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"0"}));
-                        currentPlayer.addScore(0);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(0);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 8:
                         this.print(new String[] {
@@ -120,8 +127,8 @@ public class Game {
                                 Translate.t("field.black_cave.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"-70"}));
-                        currentPlayer.addScore(-70);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(-70);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 9:
                         this.print(new String[] {
@@ -129,8 +136,8 @@ public class Game {
                                 Translate.t("field.huts_in_the_mountain.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"60"}));
-                        currentPlayer.addScore(60);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(60);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 10:
                         this.print(new String[] {
@@ -138,8 +145,8 @@ public class Game {
                                 Translate.t("field.the_werewall.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"-80"}));
-                        currentPlayer.addScore(-80);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(-80);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 11:
                         this.print(new String[] {
@@ -147,8 +154,8 @@ public class Game {
                                 Translate.t("field.the_pit.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"-50"}));
-                        currentPlayer.addScore(-50);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(-50);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                     case 12:
                         this.print(new String[] {
@@ -156,15 +163,15 @@ public class Game {
                                 Translate.t("field.goldmine.description"),
                         });
                         this.print(Translate.t("turn.score", new String[] {"650"}));
-                        currentPlayer.addScore(650);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getScore()}));
+                        currentPlayer.addAmount(650);
+                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                 }
-                GUI.setBalance(currentPlayer.getName(),currentPlayer.getScore());
+                GUI.setBalance(currentPlayer.getName(),currentPlayer.getAmount());
             }
             while (sum()==10);
 
-            if (currentPlayer.getScore() >= 3000) {
+            if (currentPlayer.getAmount() >= 3000) {
                 winnerFound = true;
 
             }
@@ -199,7 +206,7 @@ public class Game {
         for (int i = 1; i <= this.players.length; i++) {
             Player player = this.players[i - 1];
 
-            scoreboardText[i] = " - " + player.getName() + ": " + player.getScore();
+            scoreboardText[i] = " - " + player.getName() + ": " + player.getAmount();
 
             if (player == winningPlayer) {
                 scoreboardText[i] = scoreboardText[i] + " " + Translate.t("scoreboard.winnerText");
