@@ -1,0 +1,4 @@
+writeName:Indtast spiller {{ #0 }}'s navn
+
+
+welcome1:Velkommen.
