@@ -27,11 +27,19 @@ public class TranslateTest {
         String lang1 = Translate.getLang();
         assertTrue(lang1.equals("da_DK"));
 
-        String
+        Translate.setLang("en_EN");
+        String lang2 = Translate.getLang();
+        assertTrue(lang2.equals("en_EN"));
     }
 
     @Test
     public void setLang() throws Exception {
+        Translate.setLang("en_EN");
+        String lang3 = Translate.getLang();
+        assertTrue(lang3.equals("en_EN"));
+        Translate.setLang("da_DK");
+        String lang4 = Translate.getLang();
+        assertTrue(lang4.equals("da_DK"));
     }
 
     @Test
