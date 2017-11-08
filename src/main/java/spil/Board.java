@@ -91,5 +91,4 @@ public class Board {
                 GUI.create(fields);
 
     }
-
 }

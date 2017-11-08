@@ -11,7 +11,6 @@ public class Player {
         this.stash = new Stash();
     }
 
-
     public String getName()
     {
         return this.name;

@@ -1,5 +1,6 @@
 package spil;
 
+
 public class Stash {
     private int amount=1000;
 
@@ -14,8 +15,5 @@ public class Stash {
         else {
             this.amount += numberToAdd;
         }
-
     }
-
-
 }

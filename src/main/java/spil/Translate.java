@@ -1,5 +1,6 @@
 package spil;
 
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -25,7 +26,6 @@ public class Translate {
         if (! Translate.hasInstance()) {
             Translate.instance = new Translate();
         }
-
         return Translate.instance;
     }
 
@@ -73,7 +73,6 @@ public class Translate {
         if (translation.equals("")) {
             return key;
         }
-
         return translation;
     }
 
@@ -87,7 +86,6 @@ public class Translate {
                 translation = translation.replaceAll("\\{\\{ ?#" + i + " ?\\}\\}", variables[i]);
             }
         }
-
         return translation;
     }
 

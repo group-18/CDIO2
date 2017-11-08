@@ -1,5 +1,6 @@
 package spil;
 
+
 public class Dice {
     private int faceValue;
     private int numberOfEyes;
