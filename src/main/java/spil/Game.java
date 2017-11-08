@@ -26,12 +26,12 @@ public class Game {
             );
 
             this.players[i] = new Player(playerName);
+
+            GUI.addPlayer(this.players[i].getName(), this.players[i].getAmount());
         }
     }
 
     public void play() {
-        GUI.addPlayer(players[0].getName(), players[0].getAmount());
-        GUI.addPlayer(players[1].getName(), players[1].getAmount());
         this.printWelcomeMessage();
 
         Player currentPlayer;
