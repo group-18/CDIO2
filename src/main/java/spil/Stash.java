@@ -9,7 +9,7 @@ public class Stash {
 
     public void addAmount(int numberToAdd){
         if ((this.amount += numberToAdd)<  0){
-            this.amount += (this.amount);
+            this.amount = 0;
         }
         else {
             this.amount += numberToAdd;
