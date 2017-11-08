@@ -7,14 +7,8 @@ import desktop_resources.*;
 public class Game {
     private Player[] players;
     private int playerIndex = 0;
-<<<<<<< HEAD
     private Dice[] dies;
-=======
-    private Dice[] dice;
-    private DiceCup dies;
 
-
->>>>>>> master
     public Game()
     {
      Dice d1 = new Dice(6);
