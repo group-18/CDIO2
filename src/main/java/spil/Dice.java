@@ -5,6 +5,8 @@ public class Dice {
     private int faceValue;
     private int numberOfEyes;
 
+    public Dice() {faceValue=1;}
+
     public Dice(int numberOfEyes){this.numberOfEyes = numberOfEyes;}
 
     public void roll()
