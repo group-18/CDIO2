@@ -11,15 +11,7 @@ public class Game {
 
     public Game()
     {
-     Dice d1 = new Dice(6);
-     Dice d2 = new Dice(6);
-     this.dies = new Dice[2];
-     this.dies[0] = d1;
-     this.dies[1] = d2;
-    }
-
-    public int sum() {
-        return dies[0].getFaceValue()+dies[1].getFaceValue();
+        this.dies = new Dice[] {new Dice(), new Dice()};
     }
 
     public void askForPlayers(int numberOfPlayers)
@@ -41,10 +33,9 @@ public class Game {
         this.printWelcomeMessage();
 
         Player currentPlayer;
-        boolean winnerFound = false;
+        boolean winnerFound;
 
         do {
-
             currentPlayer = getNextPlayer();
 
             this.print(Translate.t("turn.currentPlayer", new String[] {currentPlayer.getName()}));
@@ -53,12 +44,16 @@ public class Game {
 
             do {
                 GUI.removeAllCars(currentPlayer.getName());
-                dies[0].roll();
-                dies[1].roll();
-                GUI.setDice(dies[0].getFaceValue(),3,8,dies[1].getFaceValue(),4,8);
-                int fieldNumber = sum();
+
+                this.rollDies();
+
+                int fieldNumber = this.sum();
+
                 GUI.setCar(fieldNumber, currentPlayer.getName());
+                GUI.setDice(this.dies[0].getFaceValue(), 3, 8, this.dies[1].getFaceValue(), 4, 8);
+
                 this.print(Translate.t("turn.rollResult", new String[] {"" + sum()}));
+
                 switch (fieldNumber) {
                     case 2:
                         this.print(new String[] {
@@ -161,17 +156,12 @@ public class Game {
                         this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
                         break;
                 }
+
                 GUI.setBalance(currentPlayer.getName(),currentPlayer.getAmount());
-            }
-            while (sum()==10);
+            } while (this.sum() == 10);
 
-            if (currentPlayer.getAmount() >= 3000) {
-                winnerFound = true;
-
-            }
-
-        }
-        while (!winnerFound);
+            winnerFound = currentPlayer.getAmount() >= 3000;
+        } while (! winnerFound);
 
         this.printScoreBoard(currentPlayer);
     }
@@ -210,6 +200,26 @@ public class Game {
         scoreboardText[this.players.length + 1] = Translate.t("scoreboard.winner", new String[] {winningPlayer.getName()});
 
         this.print(String.join("\n", scoreboardText));
+    }
+
+
+    private int sum()
+    {
+        int sum = 0;
+
+        for (Dice dice : this.dies) {
+            sum += dice.getFaceValue();
+        }
+
+        return sum;
+    }
+
+
+    private void rollDies()
+    {
+        for (Dice dice : this.dies) {
+            dice.roll();
+        }
     }
 
 

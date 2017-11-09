@@ -8,7 +8,7 @@ public class Player {
     public Player(String name)
     {
         this.name = name;
-        this.stash = new Stash();
+        this.stash = new Stash(1000);
     }
 
     public String getName()
@@ -16,7 +16,8 @@ public class Player {
         return this.name;
     }
 
-    public int getAmount(){
+    public int getAmount()
+    {
         return this.stash.getAmount();
     }
 

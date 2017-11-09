@@ -2,18 +2,28 @@ package spil;
 
 
 public class Stash {
-    private int amount=1000;
+    private int amount;
 
-    public int getAmount(){
+    public Stash()
+    {
+    }
+
+    public Stash(int startAmount)
+    {
+        this.amount = startAmount;
+    }
+
+    public int getAmount()
+    {
         return this.amount;
     }
 
-    public void addAmount(int numberToAdd){
-        if ((this.amount + numberToAdd)<  0){
+    public void addAmount(int numberToAdd)
+    {
+        this.amount += numberToAdd;
+
+        if (this.amount < 0) {
             this.amount = 0;
-        }
-        else {
-            this.amount += numberToAdd;
         }
     }
 }
