@@ -5,20 +5,28 @@ public class Dice {
     private int faceValue;
     private int numberOfEyes;
 
-    public Dice() {faceValue=1;}
-
-    public Dice(int numberOfEyes){this.numberOfEyes = numberOfEyes;}
-
-    public void roll()
+    public Dice()
     {
-        this.faceValue = (int) (Math.random() * numberOfEyes) + 1;
+        this.numberOfEyes = 6;
     }
 
-    public int getNumberOfEyes(){return this.numberOfEyes;}
+    public Dice(int numberOfEyes)
+    {
+        this.numberOfEyes = numberOfEyes;
+    }
+
+    public int getNumberOfEyes()
+    {
+        return this.numberOfEyes;
+    }
 
     public int getFaceValue()
     {
         return this.faceValue;
     }
 
+    public void roll()
+    {
+        this.faceValue = (int) (Math.random() * this.numberOfEyes) + 1;
+    }
 }
