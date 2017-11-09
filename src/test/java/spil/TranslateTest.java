@@ -16,46 +16,30 @@ public class TranslateTest {
     }
 
     @Test
-    public void getInstance() throws Exception {
-        Translate translate1 = Translate.getInstance();
-        Translate translate2 = Translate.getInstance();
-        assertEquals(translate1, translate2);
-    }
-
-    @Test
-    public void getLang() throws Exception {
+    public void getSetLang() throws Exception {
         String lang1 = Translate.getLang();
         assertTrue(lang1.equals("da_DK"));
 
         Translate.setLang("en_EN");
-        String lang2 = Translate.getLang();
-        assertTrue(lang2.equals("en_EN"));
+        assertTrue(Translate.getLang().equals("en_EN"));
+
+        Translate.setLang("da_DK");
+        assertTrue(Translate.getLang().equals("da_DK"));
     }
 
     @Test
-    public void setLang() throws Exception {
-        Translate.setLang("en_EN");
-        String lang3 = Translate.getLang();
-        assertTrue(lang3.equals("en_EN"));
-        Translate.setLang("da_DK");
-        String lang4 = Translate.getLang();
-        assertTrue(lang4.equals("da_DK"));
+    public void getInstance() throws Exception {
+        assertEquals(Translate.getInstance(), Translate.getInstance());
     }
 
     @Test
     public void t() throws Exception {
+        assertTrue(Translate.t("welcome1").equals("Velkommen til spillet."));
+        assertTrue(Translate.t("writeName", new String[] {"2"}).equals("Nummer 2's navn"));
+        assertTrue(Translate.t("empty").equals("empty"));
+        assertTrue(Translate.t("notexist").equals("notexist")); // If string does not exist.
+
     }
 
-    @Test
-    public void t1() throws Exception {
-    }
-
-    @Test
-    public void get() throws Exception {
-    }
-
-    @Test
-    public void get1() throws Exception {
-    }
 
 }
