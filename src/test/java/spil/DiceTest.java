@@ -49,23 +49,23 @@ public class DiceTest {
             rolls[this.dice.getFaceValue() - 1]++;
         }
 
-        assertTrue(rolls[0] > minFailureRate, "Der er for få 1'er " + rolls[0]);
-        assertTrue(rolls[0] < maxFailureRate, "Der er for mange 1'er " + rolls[0]);
+        assertTrue("Der er for få 1'er " + rolls[0], rolls[0] > minFailureRate);
+        assertTrue("Der er for mange 1'er " + rolls[0], rolls[0] < maxFailureRate);
 
-        assertTrue(rolls[1] > minFailureRate, "Der er for få 2'er " + rolls[1]);
-        assertTrue(rolls[1] < maxFailureRate, "Der er for mange 2'er " + rolls[1]);
+        assertTrue("Der er for få 2'er " + rolls[1], rolls[1] > minFailureRate);
+        assertTrue("Der er for mange 2'er " + rolls[1], rolls[1] < maxFailureRate);
 
-        assertTrue(rolls[2] > minFailureRate, "Der er for få 3'er " + rolls[2]);
-        assertTrue(rolls[2] < maxFailureRate, "Der er for mange 3'er " + rolls[2]);
+        assertTrue( "Der er for få 3'er " + rolls[2], rolls[2] > minFailureRate);
+        assertTrue("Der er for mange 3'er " + rolls[2], rolls[2] < maxFailureRate);
 
-        assertTrue(rolls[3] > minFailureRate, "Der er for få 4'er " + rolls[3]);
-        assertTrue(rolls[3] < maxFailureRate, "Der er for mange 4'er " + rolls[3]);
+        assertTrue("Der er for få 4'er " + rolls[3], rolls[3] > minFailureRate);
+        assertTrue("Der er for mange 4'er " + rolls[3], rolls[3] < maxFailureRate);
 
-        assertTrue(rolls[4] > minFailureRate, "Der er for få 5'er " + rolls[4]);
-        assertTrue(rolls[4] < maxFailureRate, "Der er for mange 5'er " + rolls[4]);
+        assertTrue("Der er for få 5'er " + rolls[4], rolls[4] > minFailureRate);
+        assertTrue("Der er for mange 5'er " + rolls[4], rolls[4] < maxFailureRate);
 
-        assertTrue(rolls[5] > minFailureRate, "Der er for få 6'er " + rolls[5]);
-        assertTrue(rolls[5] < maxFailureRate, "Der er for mange 6'er " + rolls[5]);
+        assertTrue("Der er for få 6'er " + rolls[5], rolls[5] > minFailureRate);
+        assertTrue("Der er for mange 6'er " + rolls[5], rolls[5] < maxFailureRate);
     }
 
     @Test
@@ -95,13 +95,13 @@ public class DiceTest {
             double percentage = (double) rolls[i] * oneRollPercent;
             double expectedPercentage = this.numPossibilities(numberOfDies, i) * (100.0 / 36.0);
 
-            assertTrue(percentage >= expectedPercentage - failureRate, "Sum " + i + " med sandsynlighed " + percentage + "% er for lav, min. " + (expectedPercentage - failureRate) + "%");
-            assertTrue(percentage <= expectedPercentage + failureRate, "Sum " + i + " med sandsynlighed " + percentage + "% er for høj, max. " + (expectedPercentage + failureRate) + "%");
+            assertTrue("Sum " + i + " med sandsynlighed " + percentage + "% er for lav, min. " + (expectedPercentage - failureRate) + "%", percentage >= expectedPercentage - failureRate);
+            assertTrue("Sum " + i + " med sandsynlighed " + percentage + "% er for høj, max. " + (expectedPercentage + failureRate) + "%", percentage <= expectedPercentage + failureRate);
 
             totalPercentage += percentage;
         }
 
-        assertTrue(totalPercentage >= 99 && totalPercentage <= 101, "Summen giver ikke 100% +- 1% : " + totalPercentage);
+        assertTrue("Summen giver ikke 100% +- 1% : " + totalPercentage, totalPercentage >= 99 && totalPercentage <= 101);
     }
 
 
