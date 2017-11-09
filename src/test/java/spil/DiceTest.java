@@ -7,7 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DiceTest {
-    //Alle test på nær getNumberOfEyes er fra vores forige rapport CDIO1. Vi har dog lavet en ny unit test på getNumberOfEyes, da det var et krav at man skal nemt kunne skifte terning.
+    //Alle test på nær getNumberOfEyes er fra vores forige rapport CDIO1. Vi har dog lavet en ny unit test på getNumberOfEyes,
+    // da det var et krav at man skal nemt kunne skifte terning.
     private Dice dice;
     @Before
     public void setUp() throws Exception {
