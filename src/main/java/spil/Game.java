@@ -5,9 +5,38 @@ import desktop_resources.*;
 
 
 public class Game {
+    private Dice[] dies;
+
     private Player[] players;
     private int playerIndex = 0;
-    private Dice[] dies;
+
+    private String[][] fields = new String[][] {
+        {"tower", "Tower"},
+        {"crater", "Crater"},
+        {"palace_gates", "Palace Gates"},
+        {"cold_desert", "Cold Desert"},
+        {"walled_city", "Walled City"},
+        {"monastery", "Monastery"},
+        {"black_cave", "Black Cave"},
+        {"huts_in_the_mountain", "Huts in the Mountain"},
+        {"the_werewall", "The Werewall (werewolf-wall)"},
+        {"the_pit", "The Pit"},
+        {"goldmine", "Goldmine"},
+    };
+
+    private int[] fieldValues = new int[] {
+        250,
+        -100,
+        100,
+        -20,
+        180,
+        0,
+        -70,
+        60,
+        -80,
+        -50,
+        650,
+    };
 
     public Game()
     {
@@ -47,115 +76,24 @@ public class Game {
 
                 this.rollDies();
 
-                int fieldNumber = this.sum();
-
-                GUI.setCar(fieldNumber, currentPlayer.getName());
+                GUI.setCar(this.sum(), currentPlayer.getName());
                 GUI.setDice(this.dies[0].getFaceValue(), 3, 8, this.dies[1].getFaceValue(), 4, 8);
 
-                this.print(Translate.t("turn.rollResult", new String[] {"" + sum()}));
+                int fieldNumber = this.sum() - 2;
 
-                switch (fieldNumber) {
-                    case 2:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Tower"}),
-                                Translate.t("field.tower.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"+250"}));
-                        currentPlayer.addAmount(250);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
+                this.print(new String[] {
+                        Translate.t("turn.rollResult", new String[] {"" + sum()}),
+                        Translate.t("turn.position", new String[] {this.fields[fieldNumber][1]}),
+                        Translate.t("field." + this.fields[fieldNumber][0] + ".description"),
+                });
 
-                        break;
-                    case 3:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Crater"}),
-                                Translate.t("field.crater.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"-100"}));
-                        currentPlayer.addAmount(-100);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 4:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Palace Gates"}),
-                                Translate.t("field.palace_gates.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"100"}));
-                        currentPlayer.addAmount(100);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 5:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Cold Desert"}),
-                                Translate.t("field.cold_desert.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"-20"}));
-                        currentPlayer.addAmount(-20);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 6:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Walled City"}),
-                                Translate.t("field.walled_city.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"180"}));
-                        currentPlayer.addAmount(180);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 7:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Monastery"}),
-                                Translate.t("field.monastery.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"0"}));
-                        currentPlayer.addAmount(0);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 8:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Black Cave"}),
-                                Translate.t("field.black_cave.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"-70"}));
-                        currentPlayer.addAmount(-70);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 9:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Huts in the Mountain"}),
-                                Translate.t("field.huts_in_the_mountain.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"60"}));
-                        currentPlayer.addAmount(60);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 10:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"The Werewall (werewolf-wall)"}),
-                                Translate.t("field.the_werewall.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"-80"}));
-                        currentPlayer.addAmount(-80);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 11:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"The Pit"}),
-                                Translate.t("field.the_pit.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"-50"}));
-                        currentPlayer.addAmount(-50);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                    case 12:
-                        this.print(new String[] {
-                                Translate.t("turn.position", new String[] {"Goldmine"}),
-                                Translate.t("field.goldmine.description"),
-                        });
-                        this.print(Translate.t("turn.score", new String[] {"650"}));
-                        currentPlayer.addAmount(650);
-                        this.print(Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}));
-                        break;
-                }
+                int score = this.fieldValues[fieldNumber];
+                currentPlayer.addAmount(score);
+
+                this.print(new String[] {
+                    Translate.t("turn.score", new String[] {"" + (score > 0 ? "+" : "") + score}),
+                    Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}),
+                });
 
                 GUI.setBalance(currentPlayer.getName(),currentPlayer.getAmount());
             } while (this.sum() == 10);
