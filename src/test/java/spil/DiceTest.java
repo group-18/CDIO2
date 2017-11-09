@@ -10,9 +10,12 @@ public class DiceTest {
     //Alle test på nær getNumberOfEyes er fra vores forige rapport CDIO1. Vi har dog lavet en ny unit test på getNumberOfEyes,
     // da det var et krav at man skal nemt kunne skifte terning.
     private Dice dice;
+    private Dice dice2;
+
     @Before
     public void setUp() throws Exception {
         this.dice = new Dice(6);
+        this.dice2 = new Dice(4);
     }
 
     @Test
@@ -26,16 +29,11 @@ public class DiceTest {
     @Test
     public void getNumberOfEyes() throws Exception {
         assertEquals(6,dice.getNumberOfEyes());
-    }
-
-
-    @Test
-    public void getFaceValue() throws Exception {
-        assertEquals(1,dice.getFaceValue());
+        assertEquals(6,dice2.getNumberOfEyes());
     }
 
     @Test
-    void rollMany() {
+    public void rollMany() {
         int failureRate = 400;
         int numberOfRolls = 60000;
 
@@ -70,7 +68,7 @@ public class DiceTest {
     }
 
     @Test
-    void rollCountMultiple() {
+    public void rollCountMultiple() {
         int numberOfDies = 2;
         int numberOfRolls = 60000;
 
@@ -104,7 +102,6 @@ public class DiceTest {
 
         assertTrue("Summen giver ikke 100% +- 1% : " + totalPercentage, totalPercentage >= 99 && totalPercentage <= 101);
     }
-
 
     private int numPossibilities(int numDice, int sum) {
         if (numDice == sum) {
