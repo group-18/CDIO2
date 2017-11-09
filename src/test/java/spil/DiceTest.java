@@ -9,13 +9,12 @@ import static org.junit.Assert.*;
 public class DiceTest {
     //Alle test på nær getNumberOfEyes er fra vores forige rapport CDIO1. Vi har dog lavet en ny unit test på getNumberOfEyes,
     // da det var et krav at man skal nemt kunne skifte terning.
+
     private Dice dice;
-    private Dice dice2;
 
     @Before
     public void setUp() throws Exception {
         this.dice = new Dice(6);
-        this.dice2 = new Dice(4);
     }
 
     @Test
@@ -29,7 +28,6 @@ public class DiceTest {
     @Test
     public void getNumberOfEyes() throws Exception {
         assertEquals(6,dice.getNumberOfEyes());
-        assertEquals(6,dice2.getNumberOfEyes());
     }
 
     @Test
@@ -114,10 +112,4 @@ public class DiceTest {
                     this.numPossibilities(numDice - 1, sum - 7);
         }
     }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
-
 }

@@ -7,14 +7,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StashTest {
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void getAmount() throws Exception {
         Stash stash = new Stash();

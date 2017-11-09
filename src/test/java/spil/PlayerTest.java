@@ -7,19 +7,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
 
     @Test
     public void getName() throws Exception {
         Player player = new Player("test");
         assertEquals("test",player.getName());
-
     }
 
     @Test
