@@ -12,11 +12,13 @@ public class DiceTest {
 
     private Dice dice;
 
+    //Makes a dice for testing
     @Before
     public void setUp() throws Exception {
         this.dice = new Dice(6);
     }
 
+    //Testing the roll will give a value that is >=1 and <=6
     @Test
     public void roll() throws Exception {
         this.dice.roll();
@@ -30,6 +32,7 @@ public class DiceTest {
         assertEquals(6, this.dice.getNumberOfEyes());
     }
 
+    //Testing the statistical probability.
     @Test
     public void rollMany() {
         Dice dice = new Dice();
