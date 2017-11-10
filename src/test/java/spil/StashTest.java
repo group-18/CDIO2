@@ -8,17 +8,19 @@ import static org.junit.Assert.*;
 public class StashTest {
     Stash stash;
 
-
+    //Creates a stash used to test, the stash's start amount is equal to the games start amount.
     @Before
     public void setUp() {
         this.stash = new Stash(1000);
     }
 
+    //Testing the getAmount method
     @Test
     public void getAmount() throws Exception {
         assertEquals(1000, this.stash.getAmount());
     }
 
+    //Testing the addAmount method, and making sure that the addAmount, wont make the stash hold a negative value.
     @Test
     public void addAmount() throws Exception {
         //Vi starter med at være sikre på at amount = 0. Dette gør vi for at se om vores addAmount ændrer på noget.
