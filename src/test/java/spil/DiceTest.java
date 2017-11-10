@@ -32,7 +32,7 @@ public class DiceTest {
         assertEquals(6, this.dice.getNumberOfEyes());
     }
 
-    //Testing the statistical probability.
+    //Testing the statistical probability of the dice (even distribution between 1 and 6).
     @Test
     public void rollMany() {
         Dice dice = new Dice();
@@ -58,6 +58,7 @@ public class DiceTest {
         }
     }
 
+    //Testing the statistical probability of the sum of the dices.
     @Test
     public void rollCountMultiple() {
         int numberOfDies = 2;
