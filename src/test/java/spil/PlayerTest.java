@@ -8,18 +8,21 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 
+    //Testing the getName method
     @Test
     public void getName() throws Exception {
         Player player = new Player("test");
         assertEquals("test",player.getName());
     }
 
+    //Testing the getAmount method
     @Test
     public void getAmount() throws Exception {
         Player player = new Player("test");
         assertEquals(1000, player.getAmount());
     }
 
+    //Testing the addAmount, adds the correct value, and that the players stash will be set to 0, if the addAmount makes it negative.
     @Test
     public void addAmount() throws Exception {
         Player player = new Player("test");
