@@ -1,13 +1,12 @@
 package spil;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class DiceTest {
-    //Alle test på nær getNumberOfEyes er fra vores forige rapport CDIO1. Vi har dog lavet en ny unit test på getNumberOfEyes,
+    //Alle test på nær getNumberOfSides er fra vores forige rapport CDIO1. Vi har dog lavet en ny unit test på getNumberOfSides,
     // da det var et krav at man skal nemt kunne skifte terning.
 
     private Dice dice;
@@ -29,7 +28,7 @@ public class DiceTest {
 
     @Test
     public void getNumberOfEyes() throws Exception {
-        assertEquals(6, this.dice.getNumberOfEyes());
+        assertEquals(6, this.dice.getNumberOfSides());
     }
 
     //Testing the statistical probability of the dice (even distribution between 1 and 6).
@@ -38,7 +37,7 @@ public class DiceTest {
         Dice dice = new Dice();
 
         int numberOfRolls = 60000;
-        int numberOfEyes = dice.getNumberOfEyes();
+        int numberOfEyes = dice.getNumberOfSides();
 
         int[] rolls = new int[numberOfEyes];
 

@@ -3,22 +3,22 @@ package spil;
 
 public class Dice {
     private int faceValue;
-    private int numberOfEyes;
+    private int numberOfSides;
 
     public Dice()
     {
-        this.numberOfEyes = 6;
+        this.numberOfSides = 6;
     }
 
     //This constructor makes it able to change the number of eyes on the die.
     public Dice(int numberOfEyes)
     {
-        this.numberOfEyes = numberOfEyes;
+        this.numberOfSides = numberOfEyes;
     }
 
-    public int getNumberOfEyes()
+    public int getNumberOfSides()
     {
-        return this.numberOfEyes;
+        return this.numberOfSides;
     }
 
     public int getFaceValue()
@@ -26,9 +26,9 @@ public class Dice {
         return this.faceValue;
     }
 
-    //Rolls the die, using the numberOfEyes as factor, so that it will work for different dies.
+    //Rolls the die, using the numberOfSides as factor, so that it will work for different dies.
     public void roll()
     {
-        this.faceValue = (int) (Math.random() * this.numberOfEyes) + 1;
+        this.faceValue = (int) (Math.random() * this.numberOfSides) + 1;
     }
 }
