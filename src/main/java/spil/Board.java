@@ -11,7 +11,7 @@ import java.awt.*;
 public class Board {
     public static void boardgame()
     {
-
+        //Creating fields in the GUI, with the different values stated in the assignment.
         Field[] fields = new Field[12];
 
         fields[0] = new Street.Builder()
