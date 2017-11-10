@@ -16,9 +16,9 @@ public class StashTest {
     @Test
     public void addAmount() throws Exception {
         Stash stash = new Stash();
-        //Vi starter med at være sikre på at amount = 1000. Dette gør vi for at se om vores addAmount ændrer på noget.
+        //Vi starter med at være sikre på at amount = 0. Dette gør vi for at se om vores addAmount ændrer på noget.
         assertEquals(0,stash.getAmount());
-        //Vi sætter vores forventede amount til 1400, og prøver så at bruge addAmount(400)
+        //Vi prøver så at bruge addAmount(400), for at se om den får tilføjet værdien.
         stash.addAmount(400);
         assertEquals(400,stash.getAmount());
         //Vi prøver at bruge addAmount til at få amount<0, og dermed sikre at den sætter amount=0 når amount<0.
