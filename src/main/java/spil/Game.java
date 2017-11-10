@@ -10,6 +10,8 @@ public class Game {
     private Player[] players;
     private int playerIndex = 0;
 
+    private Translate translate;
+
     private String[][] fields = new String[][] {
         {"tower", "Tower"},
         {"crater", "Crater"},
@@ -40,7 +42,10 @@ public class Game {
 
     public Game()
     {
+        this.translate = new Translate("da_DK");
         this.dies = new Dice[] {new Dice(), new Dice()};
+
+        Board.boardgame(this.translate);
     }
 
     public void askForPlayers(int numberOfPlayers)
@@ -49,7 +54,7 @@ public class Game {
 
         for (int i = 0; i < numberOfPlayers; i++) {
             String playerName = GUI.getUserString(
-                    Translate.t("writeName", new String[] {"" + (i + 1)})
+                    this.translate.t("writeName", new String[] {"" + (i + 1)})
             );
 
             this.players[i] = new Player(playerName);
@@ -67,7 +72,7 @@ public class Game {
         do {
             currentPlayer = getNextPlayer();
 
-            this.print(Translate.t("turn.currentPlayer", new String[] {currentPlayer.getName()}));
+            this.print(this.translate.t("turn.currentPlayer", new String[] {currentPlayer.getName()}));
             //Adds a button that executes the following do-while-statement, remove this for easy unittesting
             GUI.getUserButtonPressed("", "Kast");
 
@@ -82,17 +87,17 @@ public class Game {
                 int fieldNumber = this.sum() - 2;
 
                 this.print(new String[] {
-                        Translate.t("turn.rollResult", new String[] {"" + sum()}),
-                        Translate.t("turn.position", new String[] {this.fields[fieldNumber][1]}),
-                        Translate.t("field." + this.fields[fieldNumber][0] + ".description"),
+                        this.translate.t("turn.rollResult", new String[] {"" + sum()}),
+                        this.translate.t("turn.position", new String[] {this.fields[fieldNumber][1]}),
+                        this.translate.t("field." + this.fields[fieldNumber][0] + ".description"),
                 });
 
                 int score = this.fieldValues[fieldNumber];
                 currentPlayer.addAmount(score);
 
                 this.print(new String[] {
-                    Translate.t("turn.score", new String[] {"" + (score > 0 ? "+" : "") + score}),
-                    Translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}),
+                    this.translate.t("turn.score", new String[] {"" + (score > 0 ? "+" : "") + score}),
+                    this.translate.t("turn.scoreCurrent", new String[] {"" + currentPlayer.getAmount()}),
                 });
 
                 GUI.setBalance(currentPlayer.getName(),currentPlayer.getAmount());
@@ -114,16 +119,16 @@ public class Game {
     }
 
     private void printWelcomeMessage(){
-        this.print(Translate.t("welcome1"));
-        this.print(Translate.t("welcome2"));
-        this.print(Translate.t("welcome3"));
+        this.print(this.translate.t("welcome1"));
+        this.print(this.translate.t("welcome2"));
+        this.print(this.translate.t("welcome3"));
     }
 
     private void printScoreBoard(Player winningPlayer)
     {
         String[] scoreboardText = new String[this.players.length + 2];
 
-        scoreboardText[0] = Translate.t("scoreboard.title");
+        scoreboardText[0] = this.translate.t("scoreboard.title");
 
         for (int i = 1; i <= this.players.length; i++) {
             Player player = this.players[i - 1];
@@ -131,11 +136,11 @@ public class Game {
             scoreboardText[i] = " - " + player.getName() + ": " + player.getAmount();
 
             if (player == winningPlayer) {
-                scoreboardText[i] = scoreboardText[i] + " " + Translate.t("scoreboard.winnerText");
+                scoreboardText[i] = scoreboardText[i] + " " + this.translate.t("scoreboard.winnerText");
             }
         }
 
-        scoreboardText[this.players.length + 1] = Translate.t("scoreboard.winner", new String[] {winningPlayer.getName()});
+        scoreboardText[this.players.length + 1] = this.translate.t("scoreboard.winner", new String[] {winningPlayer.getName()});
 
         this.print(String.join("\n", scoreboardText));
     }

@@ -5,64 +5,33 @@ import java.io.*;
 import java.util.HashMap;
 
 public class Translate {
-    private static Translate instance;
-
-    private static String lang = "da_DK";
-
+    private String lang;
 
     private HashMap<String, String> translations;
 
 
-    private Translate()
+    public Translate(String lang)
     {
-        this.translations = new HashMap<String, String>();
+        this.lang = lang;
+        this.translations = new HashMap<>();
 
-        this.parseFile("/languages/" + Translate.getLang() + ".txt");
+        this.parseFile("/languages/" + this.lang + ".txt");
     }
 
 
-    public static Translate getInstance()
+    public String getLang()
     {
-        if (! Translate.hasInstance()) {
-            Translate.instance = new Translate();
-        }
-        return Translate.instance;
+        return this.lang;
     }
 
 
-    private static boolean hasInstance()
+    public Translate changeLang(String lang)
     {
-        return Translate.instance != null;
+        return new Translate(lang);
     }
 
 
-    public static String getLang()
-    {
-        return Translate.lang;
-    }
-
-
-    public static void setLang(String lang)
-    {
-        if (! Translate.hasInstance()) {
-            Translate.lang = lang;
-        }
-    }
-
-
-    public static String t(String key)
-    {
-        return Translate.getInstance().get(key);
-    }
-
-
-    public static String t(String key, String[] variables)
-    {
-        return Translate.getInstance().get(key, variables);
-    }
-
-
-    public String get(String key)
+    public String t(String key)
     {
         if (! this.translations.containsKey(key)) {
             return key;
@@ -73,19 +42,21 @@ public class Translate {
         if (translation.equals("")) {
             return key;
         }
+
         return translation;
     }
 
 
-    public String get(String key, String[] variables)
+    public String t(String key, String[] variables)
     {
-        String translation = this.get(key);
+        String translation = this.t(key);
 
         if (! translation.equals(key)) {
             for (int i = 0; i < variables.length; i++) {
                 translation = translation.replaceAll("\\{\\{ ?#" + i + " ?\\}\\}", variables[i]);
             }
         }
+
         return translation;
     }
 
