@@ -4,10 +4,12 @@ package spil;
 public class Stash {
     private int amount;
 
+    //Makes the Stash possible to use for other assignments.
     public Stash()
     {
     }
 
+    //Initializes the stash with a start amount.
     public Stash(int startAmount)
     {
         this.amount = startAmount;
@@ -18,6 +20,7 @@ public class Stash {
         return this.amount;
     }
 
+    //This method adds an amount to the players stash, and makes sure that the players balance cant be negative.
     public void addAmount(int numberToAdd)
     {
         this.amount += numberToAdd;
